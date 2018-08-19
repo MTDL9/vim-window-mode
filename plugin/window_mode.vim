@@ -17,5 +17,5 @@ function! window_mode#handle()
 
   let l:command = "\<C-W>" . nr2char(l:char)
   call feedkeys("\<C-W>m")
-  silent exec 'normal! ' . l:repetitions . l:command
+  silent exec 'normal ' . l:repetitions . l:command
 endfunction
