@@ -1,8 +1,16 @@
 
-nnoremap <C-w>m<Esc> <Nop>
-nnoremap <C-w>m :call window_mode#handle()<cr>
+nnoremap <C-w>m<Esc> :echo<CR>
+nnoremap <C-w>m :call window_mode#handle()<CR>
 
 function! window_mode#handle()
+  if &showmode
+      echohl ModeMsg
+      echo '-- WINDOW --'
+      echohl None
+  else
+      echo ''
+  endif
+
   let l:char = ''
   let l:repetitions = ''
 
