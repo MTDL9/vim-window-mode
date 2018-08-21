@@ -1,6 +1,7 @@
 
 nnoremap <C-w>m<Esc> :echo<CR>
 nnoremap <C-w>m :call window_mode#handle()<CR>
+command! WindowMode :call window_mode#handle()
 
 function! window_mode#handle()
   if &showmode
