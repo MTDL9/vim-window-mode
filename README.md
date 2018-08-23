@@ -10,7 +10,9 @@ All following inputs will be interpreted as having the `<C-w>` prefix, so for
 example if while in this mode you press `j` and then `K` the inputs VIM will
 receive will be `<C-w>j` and `<C-w>K`.
 
-Numbers can be used as repetition counts for commands.
+Some keys perform special actions:
+- `<ESC>` or `<C-c>` exit the Window Mode and return to Normal Mode
+- `0` through `9` can be used, as in normal mode, to repeat commands
 
 
 ## Installation
@@ -39,8 +41,8 @@ can define some additional mappings in your .vimrc for switching/deleting
 buffers:
 
 ```viml
-nnoremap <C-w>B :bnext<cr>
-nnoremap <C-w>V :bprev<cr>
-nnoremap <C-w>D :bdelete<cr>
+nnoremap <C-w>B :bnext<CR>
+nnoremap <C-w>V :bprev<CR>
+nnoremap <C-w>D :bdelete<CR>
 ```
 
