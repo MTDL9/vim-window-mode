@@ -6,13 +6,15 @@ mappings.
 
 The Window mode is activated either by pressing `<C-w>m`, or by using the
 command `:WindowMode`.
-All following inputs will be interpreted as having the `<C-w>` prefix, so for
-example if while in this mode you press `j` and then `K` the inputs VIM will
-receive will be `<C-w>j` and `<C-w>K`.
 
-Some keys perform special actions:
-- `<ESC>` or `<C-c>` exit the Window Mode and return to Normal Mode
-- `0` through `9` can be used, as in normal mode, to repeat commands
+While the mode is active, all keypresses will act as being prefixed by the
+mapping `<C-w>`. 
+For example if you press `j` and then `K` the inputs VIM will receive will be
+`<C-w>j` and `<C-w>K`.
+
+Pressing `<ESC>` or `<C-c>` will exit the Window Mode, returning to Normal Mode.
+
+The digits `0` through `9` can be used, as in normal mode, to repeat commands.
 
 
 ## Installation
