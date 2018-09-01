@@ -64,8 +64,8 @@ This function will return `'WINDOW'` when Window Mode is enabled or an empty
 string when it is not active.
 
 This is an example of bare-bones Lightline configuration, where Window Mode
-will show an additional marker (similar to the marker shown when PASTE is
-active)
+will show an additional marker next to NORMAL (similar to the marker shown
+when PASTE is active)
 >
   let g:lightline = {}
   let g:lightline.active = {}
