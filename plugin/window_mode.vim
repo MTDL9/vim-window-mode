@@ -16,6 +16,10 @@ function! window_mode#handle()
       echo ''
   endif
 
+  if exists('#lightline')
+    call lightline#update()
+  endif
+
   let l:char = ''
   let l:repetitions = ''
 
@@ -35,5 +39,10 @@ endfunction
 
 function! window_mode#end()
   let g:window_mode_enabled = 0
+
+  if exists('#lightline')
+    call lightline#update()
+  endif
+
   echo
 endfunction
