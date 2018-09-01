@@ -48,3 +48,27 @@ nnoremap <C-w>V :bprev<CR>
 nnoremap <C-w>D :bdelete<CR>
 ```
 
+
+## Lightline Integration
+
+This plugin defines a custom function `window_mode#lightlineComponent` that
+can be used in the Lightline plugin for defining a custom component.
+
+This function will return `'WINDOW'` when Window Mode is enabled or an empty
+string when it is not active.
+
+This is an example of bare-bones Lightline configuration, where Window Mode
+will show an additional marker next to NORMAL (similar to the marker shown 
+when PASTE is active)
+
+```viml
+let g:lightline = {}
+let g:lightline.active = {}
+let g:lightline.active.left = [
+    \    [ 'mode', 'paste', 'window_mode' ],
+    \    [ 'readonly', 'filename', 'modified' ],
+    \]
+let g:lightline.component_function = {
+    \     'window_mode': 'window_mode#lightlineComponent',
+    \}
+```
