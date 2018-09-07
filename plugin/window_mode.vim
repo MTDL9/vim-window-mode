@@ -8,6 +8,10 @@ command! WindowModeEnd :call window_mode#end()
 let s:enabled = 0
 let s:last_update = 0
 
+" Variables for dot repeat operator
+let s:last_operation = ''
+let s:last_repetitions = ''
+let s:movement_mappings = ['h', 'j', 'k', 'l', 'w']
 
 " Main loop of the Window Mode, waits for input characters and feeds them to
 " VIM with the <C-w> prefix
@@ -40,7 +44,23 @@ function! window_mode#handle()
         let l:char = getchar()
     endwhile
 
-    let l:command = "\<C-w>" . nr2char(l:char)
+    let l:mapping = nr2char(l:char)
+
+    " Handle dot repeat operator
+    if l:mapping ==# '.'
+        let l:mapping = s:last_operation
+
+        if l:repetitions
+            let s:last_repetitions = l:repetitions
+        else
+            let l:repetitions = s:last_repetitions
+        endif
+    elseif l:char > 0 && index(s:movement_mappings, l:mapping) < 0
+        let s:last_operation = l:mapping
+        let s:last_repetitions = l:repetitions
+    endif
+
+    let l:command = "\<C-w>" . l:mapping
     call feedkeys("\<C-w>m")
     silent exec 'normal ' . l:repetitions . l:command
 endfunction
