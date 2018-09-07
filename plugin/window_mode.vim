@@ -4,15 +4,16 @@ nnoremap <C-w>m :call window_mode#handle()<CR>
 command! WindowMode :call window_mode#handle()
 command! WindowModeEnd :call window_mode#end()
 
-let s:window_mode_enabled = 0
-let s:window_mode_last_update = 0
+" General state variables
+let s:enabled = 0
+let s:last_update = 0
 
 
 " Main loop of the Window Mode, waits for input characters and feeds them to
 " VIM with the <C-w> prefix
 function! window_mode#handle()
-    let s:window_mode_enabled = 1
-    let s:window_mode_last_update = strftime('%s')
+    let s:enabled = 1
+    let s:last_update = strftime('%s')
 
     if &showmode
         echohl ModeMsg
@@ -48,7 +49,7 @@ endfunction
 " Callback function called when the escape character is pressed, or when the
 " end of Window Mode is detected
 function! window_mode#end()
-    let s:window_mode_enabled = 0
+    let s:enabled = 0
 
     if exists('#lightline')
         call lightline#update()
@@ -60,15 +61,15 @@ endfunction
 
 " Checks if the Window Mode is currently enabled
 function! window_mode#isEnabled()
-    if !s:window_mode_enabled
+    if !s:enabled
         return 0
     endif
 
     " If the handle function has not been called for more than 5 seconds,
     " consider window mode ended (enabled can be left at 1 when exiting the mode
     " with Ctrl-C)
-    if strftime('%s') - s:window_mode_last_update > 5
-        let s:window_mode_enabled = 0
+    if strftime('%s') - s:last_update > 5
+        let s:enabled = 0
         return 0
     endif
 
