@@ -16,6 +16,7 @@ Pressing `<ESC>` or `<C-c>` will exit the Window Mode, returning to Normal Mode.
 
 The digits `0` through `9` can be used, as in normal mode, to repeat commands.
 
+The repeat mapping `.` will repeat the last non-movement operation.
 
 ## Installation
 
